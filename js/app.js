@@ -135,6 +135,22 @@ const iniDia = () => {
     document.querySelector('#btnIniciar').disabled = true;
 }
 
+/* ---------------------------------------------------------------------------------- */
+
+const btn = document.querySelector("#btnCompra");
+const div = document.querySelector("#formCompra");
+
+btn.addEventListener("click", function() {
+    if(div.style.display === "block") {
+        div.style.display = "none";
+    } else {
+        div.style.display = "block";
+        document.querySelector('#btnVenta').disabled = true;
+        document.querySelector('#btnModificar').disabled = true;
+    }
+});
+/* ---------------------------------------------------------------------------------- */
+
 console.log("--------------------");
 console.log("1 - Operación de Compra");
 console.log("2 - Operación de Venta");
