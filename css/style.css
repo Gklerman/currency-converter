@@ -1,0 +1,105 @@
+
+body {
+    background-color: #ddd;
+}
+.container {
+    padding: 0;
+}
+section {
+    background-color: #FFF;
+    border: 1px solid rgb(128, 126, 126);   
+}
+.flag {
+    font-size: 1.5em;
+}
+p {
+    font-size: 1.5em;
+}
+
+#btnIniciar {
+    width: 50%;
+    padding: 16px 0;
+    background-color: #E88D0B;
+    border: none;
+    font-size: 1.8em;
+    color: #FFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+#btnActualizar {
+    width: 50%;
+    padding: 16px 0;
+    background-color: #04aa6d;
+    border: none;
+    font-size: 1.8em;
+    color: #FFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#btnIniciar:hover, #btnActualizar:hover {
+    text-decoration: underline;
+}
+
+#btnIniciar:disabled {
+  background-color: #ccc;
+  color: #666666;
+  text-decoration: none;
+  cursor: default;
+}
+
+#btnCompra, #btnVenta, #btnModificar {
+    width: 33%;
+    padding: 16px 0;
+    border: none;
+    font-size: 1.8em;
+    text-decoration: none;
+    cursor: pointer;
+}
+#btnCompra:hover, #btnVenta:hover, #btnModificar:hover {
+    text-decoration: underline;
+}
+
+.sectForm {
+    border: 1px solid #000;
+}
+ 
+.empty {
+    width: auto;
+    height: 100px;
+}
+
+/*.info {
+    display:inline-flex;
+}*/
+
+#formCompra {
+    display: none;
+}
+
+.impOne, .cotOne, .arbOne,
+.impTwo, .cotTwo, .arbTwo {
+    text-align: center;
+    /*border: 1px solid #000;*/
+}
+
+label.box {
+    position:relative;
+    top: 25px;
+    left: 0;
+}
+input[type=text] {
+    width: 100%;
+    padding: 5px 10px 10px 10px;
+    margin: 10px 0 10px 0;
+}
+.selectBox {
+    font-size: 1.5em;
+}
+
+
+
+/*.arb label {
+    display: flex;
+    justify-content: center;
+}*/
