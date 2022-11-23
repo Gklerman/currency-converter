@@ -9,6 +9,8 @@ const datosBusqueda = {
     arbitrajeVenta: ''
 }
 
+let pesoUruCompra = 1;
+let pesoUruVenta = 1;
 let dolarCompra = 38.65;
 let dolarVenta = 41.15;
 let arbDolarCompra = 1.00;
@@ -116,22 +118,22 @@ fitrarDivisa();
 /* ---------------------------------------------------------------------------------- */
 
 const iniDia = () => {
-    document.getElementById("dolarCompra").innerHTML += `${dolarCompra}`;
-    document.getElementById("dolarVenta").innerHTML += `${dolarVenta}`;
-    document.getElementById("arbDolarCompra").innerHTML += `${arbDolarCompra}`;
-    document.getElementById("arbDolarVenta").innerHTML += `${arbDolarVenta}`;
-    document.getElementById("euroCompra").innerHTML += `${euroCompra}`;
-    document.getElementById("euroVenta").innerHTML += `${euroVenta}`;
-    document.getElementById("arbEuroCompra").innerHTML += `${arbEuroCompra}`;
-    document.getElementById("arbEuroVenta").innerHTML += `${arbEuroVenta}`;
-    document.getElementById("pesoArgCompra").innerHTML += `${pesoArgCompra}`;
-    document.getElementById("pesoArgVenta").innerHTML += `${pesoArgVenta}`;
-    document.getElementById("arbPesoArgCompra").innerHTML += `${arbPesoArgCompra}`;
-    document.getElementById("arbPesoArgVenta").innerHTML += `${arbPesoArgVenta}`;
-    document.getElementById("realCompra").innerHTML += `${realCompra}`;
-    document.getElementById("realVenta").innerHTML += `${realVenta}`;
-    document.getElementById("arbRealCompra").innerHTML += `${arbRealCompra}`;
-    document.getElementById("arbRealVenta").innerHTML += `${arbRealVenta}`;
+    document.getElementById("dolarCompra").innerHTML = `${dolarCompra}`;
+    document.getElementById("dolarVenta").innerHTML = `${dolarVenta}`;
+    document.getElementById("arbDolarCompra").innerHTML = `${arbDolarCompra}`;
+    document.getElementById("arbDolarVenta").innerHTML = `${arbDolarVenta}`;
+    document.getElementById("euroCompra").innerHTML = `${euroCompra}`;
+    document.getElementById("euroVenta").innerHTML = `${euroVenta}`;
+    document.getElementById("arbEuroCompra").innerHTML = `${arbEuroCompra}`;
+    document.getElementById("arbEuroVenta").innerHTML = `${arbEuroVenta}`;
+    document.getElementById("pesoArgCompra").innerHTML = `${pesoArgCompra}`;
+    document.getElementById("pesoArgVenta").innerHTML = `${pesoArgVenta}`;
+    document.getElementById("arbPesoArgCompra").innerHTML = `${arbPesoArgCompra}`;
+    document.getElementById("arbPesoArgVenta").innerHTML = `${arbPesoArgVenta}`;
+    document.getElementById("realCompra").innerHTML = `${realCompra}`;
+    document.getElementById("realVenta").innerHTML = `${realVenta}`;
+    document.getElementById("arbRealCompra").innerHTML = `${arbRealCompra}`;
+    document.getElementById("arbRealVenta").innerHTML = `${arbRealVenta}`;
     document.querySelector('#btnIniciar').disabled = true;
 }
 
@@ -149,25 +151,56 @@ btn.addEventListener("click", function() {
         document.querySelector('#btnModificar').disabled = true;
     }
 });
+
+let primerDivisa = document.querySelectorAll('#monedaRec').value;
+let segundaDivisa = document.querySelectorAll('#monedaEnt').value;
+
+
+/*document.getElementById('monedaRec').onmouseleave = function() {
+    let checked = document.querySelectorAll('#monedaRec :checked');
+    let selected = [...checked].map(option => option.value);
+    return selected;
+    
+}
+document.getElementById('monedaEnt').onmouseleave = function() {
+    let checked = document.querySelectorAll('#monedaEnt :checked');
+    let selected = [...checked].map(option => option.value);
+    alert(selected);    
+}*/
+    let cotRecibido = document.getElementById('cotRecibido');
+    cotRecibido.value = dolarVenta;
+
+function compra() {
+
+    let montoRecibido = document.getElementById('montoRecibido').value;
+    
+    let importeEntregado = document.getElementById('importeEntregado');
+    importeEntregado.value = montoRecibido / dolarVenta;
+}
+
+
+
 /* ---------------------------------------------------------------------------------- */
 
-console.log("--------------------");
+/*console.log("--------------------");
 console.log("1 - Operación de Compra");
 console.log("2 - Operación de Venta");
 console.log("3 - Cambiar valores")
-console.log("4 - Salir");
+console.log("4 - Salir");*/
 
 let operacion = prompt("Ingresar Tipo de Operación");
 if(operacion == 1) {
 
     /* --- COMPRA DE DIVISAS --- */
 
-    console.log("--------------------");                                                                 
+    /*console.log("--------------------");                                                                 
     console.log("1 - Dólar");
     console.log("2 - Euro");
     console.log("3 - Peso Argentino");
     console.log("4 - Real");
-    console.log("5 - Salir");
+    console.log("5 - Salir");*/
+
+
 
     let compraMoneda = prompt("Ingresa Divisa");
 

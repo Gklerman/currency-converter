@@ -145,9 +145,9 @@
                     <div class="col-3 col-md-5">
                         <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
                         <select id="monedaRec" class="selectBox" maxlength="16">
-                            <option selected disabled>Seleccionar Moneda</option>
+                            <option disabled>Seleccionar Moneda</option>
                             <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
-                            <option id="dolar" value="dolar">Dólares</option>
+                            <option id="dolarRec" value="dolar">Dólares</option>
                             <option id="euro" value="euro">Euros</option>
                             <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
                             <option id="real" value="real">Reales</option>
@@ -158,7 +158,7 @@
                         <select id="monedaEnt" class="selectBox" maxlength="16"><!-- onchange="run()" -->
                             <option selected disabled>Seleccionar Moneda</option>
                             <option value="pesoUru">Pesos Uruguayos</option>
-                            <option value="dolar">Dólares</option>
+                            <option value="dolarEnt">Dólares</option>
                             <option value="euro">Euros</option>
                             <option value="pesoArg">Pesos Argentinos</option>
                             <option value="real">Reales</option>
@@ -167,15 +167,15 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-1 col-md-3 impOne">
                             <label class="box" for="montoRecibido"><p>Importe Recibido</p></label><br>
-                            <input type="text" id="montoRecibido" name="montoRecibido">
+                            <input type="text" id="montoRecibido" name="montoRecibido" onfocusout="compra()">
                         </div>
                         <div class="col-1 col-md-2 cotOne">
-                            <label class="box" for="cotizacion"><p>Cotización</p></label><br>
-                            <input type="text" id="cotizacion" name="cotizacion">
+                            <label class="box" for="cotRecibido"><p>Cotización</p></label><br>
+                            <input type="text" id="cotRecibido" name="cotRecibido" disabled>
                         </div>
                         <div class="col-1 col-md-2 arbOne">
-                            <label class="box" for="arbitraje"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbitraje" name="arbitraje">
+                            <label class="box" for="arbRecibido"><p>Arbitraje</p></label><br>
+                            <input type="text" id="arbRecibido" name="arbRecibido">
                         </div>
                     </div>
                     <div class="row pb-4 d-flex justify-content-center">
@@ -184,18 +184,18 @@
                             <input type="text" id="importeEntregado" name="importeEntregado">
                         </div>
                         <div class="col-1 col-md-2 cotTwo">
-                            <label class="box" for="cotizacion"><p>Cotización</p></label><br>
-                            <input type="text" id="cotizacion" name="cotizacion">
+                            <label class="box" for="cotEntregado"><p>Cotización</p></label><br>
+                            <input type="text" id="cotEntregado" name="cotEntregado">
                         </div>
                         <div class="col-1 col-md-2 arbTwo">
-                            <label class="box" for="arbitraje"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbitraje" name="arbitraje">
+                            <label class="box" for="arbEntregado"><p>Arbitraje</p></label><br>
+                            <input type="text" id="arbEntregado" name="arbEntregado">
                         </div>
                     </div>
-                    <div class="col-1 col-md-2">
+                    <!-- <div class="col-1 col-md-2">
                         <button id="btnConfirm" onclick="formConfirm()">Confirmar</button>
                         <button id="btnExit" onclick="formSalir()">Cerrar</button>
-                    </div>
+                    </div> -->
                 </form>
 
             </div>
