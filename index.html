@@ -133,20 +133,19 @@
             <button id="btnIniciar" onclick="iniDia()">Iniciar Día</button>
             <button id="btnActualizar" onclick="window.location.reload()">Actualizar</button>
             <button id="btnCompra">Comprar</button>
-            <button id="btnVenta" onclick="formVenta()">Vender</button>
+            <button id="btnVenta">Vender</button>
             <button id="btnModificar" onclick="formMod()">Modificar</button>
         </section>
 
-        <div class="empty"></div>
+        <!-- <div class="empty"></div> -->
 
-        <section id="formCompra" class="sectForm row">
+        <section class="form sectForm row mt-4">
             <div class="pt-3 d-flex justify-content-center align-items-center">
-                <form class="formulario row d-flex justify-content-center pt-3">
+                <form id="formCompra" class="formulario row d-flex justify-content-center pt-3">
                     <div class="col-3 col-md-5">
                         <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
                         <select id="monedaRec" class="selectBox" maxlength="16">
                             <option disabled>Seleccionar Moneda</option>
-                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
                             <option id="dolarRec" value="dolar">Dólares</option>
                             <option id="euro" value="euro">Euros</option>
                             <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
@@ -155,9 +154,9 @@
                     </div>
                     <div class="col-3 col-md-5">
                         <label class="boxOp" for="monedaEnt"><p>Moneda Entregada</p></label>
-                        <select id="monedaEnt" class="selectBox" maxlength="16"><!-- onchange="run()" -->
-                            <option selected disabled>Seleccionar Moneda</option>
-                            <option value="pesoUru">Pesos Uruguayos</option>
+                        <select id="monedaEnt" class="selectBox" maxlength="16">
+                            <option disabled>Seleccionar Moneda</option>
+                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
                             <option value="dolarEnt">Dólares</option>
                             <option value="euro">Euros</option>
                             <option value="pesoArg">Pesos Argentinos</option>
@@ -192,13 +191,81 @@
                             <input type="text" id="arbEntregado" name="arbEntregado">
                         </div>
                     </div>
-                    <!-- <div class="col-1 col-md-2">
-                        <button id="btnConfirm" onclick="formConfirm()">Confirmar</button>
-                        <button id="btnExit" onclick="formSalir()">Cerrar</button>
-                    </div> -->
+                    <div class="col-1 col-md-11 d-flex justify-content-end mb-3">
+                        <input type="submit" id="btnConfirm" value="Confirmar"></input>
+                    </div>
                 </form>
 
             </div>
+        </section>
+
+        <section class="formVenta sectForm row mt-4">
+            <div class="pt-3 d-flex justify-content-center align-items-center">
+                <form id="formVenta" class="formulario row d-flex justify-content-center pt-3">
+                    <div class="col-3 col-md-5">
+                        <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
+                        <select id="monedaRec" class="selectBox" maxlength="16">
+                            <option disabled>Seleccionar Moneda</option>
+                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
+                            <option id="dolarRec" value="dolar">Dólares</option>
+                            <option id="euro" value="euro">Euros</option>
+                            <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
+                            <option id="real" value="real">Reales</option>
+                        </select>
+                    </div>
+                    <div class="col-3 col-md-5">
+                        <label class="boxOp" for="monedaEnt"><p>Moneda Entregada</p></label>
+                        <select id="monedaEnt" class="selectBox" maxlength="16">
+                            <option disabled>Seleccionar Moneda</option>
+                            <option value="dolarEnt">Dólares</option>
+                            <option value="euro">Euros</option>
+                            <option value="pesoArg">Pesos Argentinos</option>
+                            <option value="real">Reales</option>
+                        </select>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-1 col-md-3 impOne">
+                            <label class="box" for="montoVenta"><p>Importe Recibido</p></label><br>
+                            <input type="text" id="montoVenta" name="montoVenta" onfocusout="venta()">
+                        </div>
+                        <div class="col-1 col-md-2 cotOne">
+                            <label class="box" for="cotVenta"><p>Cotización</p></label><br>
+                            <input type="text" id="cotVenta" name="cotVenta" disabled>
+                        </div>
+                        <div class="col-1 col-md-2 arbOne">
+                            <label class="box" for="arbRecibido"><p>Arbitraje</p></label><br>
+                            <input type="text" id="arbRecibido" name="arbRecibido">
+                        </div>
+                    </div>
+                    <div class="row pb-4 d-flex justify-content-center">
+                        <div class="col-1 col-md-3 impTwo">
+                            <label class="box" for="entregadoVenta"><p>Importe Entregado</p></label><br>
+                            <input type="text" id="entregadoVenta" name="entregadoVenta">
+                        </div>
+                        <div class="col-1 col-md-2 cotTwo">
+                            <label class="box" for="cotEntregado"><p>Cotización</p></label><br>
+                            <input type="text" id="cotEntregado" name="cotEntregado">
+                        </div>
+                        <div class="col-1 col-md-2 arbTwo">
+                            <label class="box" for="arbEntregado"><p>Arbitraje</p></label><br>
+                            <input type="text" id="arbEntregado" name="arbEntregado">
+                        </div>
+                    </div>
+                    <div class="col-1 col-md-11 d-flex justify-content-end mb-3">
+                        <input type="submit" id="btnConfirm" value="Confirmar"></input>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+        <section class="row mt-4">
+
+            <div>
+                <h2>Reporte Diario</h2>
+                <ul id="listaReporte"></ul>
+            </div>
+
         </section>
     </main>
 

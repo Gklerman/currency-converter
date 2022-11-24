@@ -67,7 +67,7 @@ function mostrarDivisas(divisas) {
     });
 }
 
-function fitrarDivisa() {
+function filtrarDivisa() {
     const res = divisas.filter(filtrarMoneda).filter(filtrarCompra).filter(filtrarVenta).filter(filtrarArbCompra).filter(filtrarArbVenta);
     if (res.length) {
         mostrarDivisas(res);
@@ -113,7 +113,7 @@ function filtrarArbVenta(tipoDivisa) {
 }
 
 //mostrarDivisas(divisas);
-fitrarDivisa();
+filtrarDivisa();
 
 /* ---------------------------------------------------------------------------------- */
 
@@ -139,338 +139,123 @@ const iniDia = () => {
 
 /* ---------------------------------------------------------------------------------- */
 
-const btn = document.querySelector("#btnCompra");
-const div = document.querySelector("#formCompra");
+const btnCompra = document.querySelector('#btnCompra');
+const divCompra = document.querySelector('.form');
 
-btn.addEventListener("click", function() {
-    if(div.style.display === "block") {
-        div.style.display = "none";
+btnCompra.addEventListener("click", function() {
+    if(divCompra.style.display === "block") {
+        divCompra.style.display = "none";
     } else {
-        div.style.display = "block";
+        divCompra.style.display = "block";
         document.querySelector('#btnVenta').disabled = true;
         document.querySelector('#btnModificar').disabled = true;
     }
 });
 
-let primerDivisa = document.querySelectorAll('#monedaRec').value;
-let segundaDivisa = document.querySelectorAll('#monedaEnt').value;
-
-
-/*document.getElementById('monedaRec').onmouseleave = function() {
-    let checked = document.querySelectorAll('#monedaRec :checked');
-    let selected = [...checked].map(option => option.value);
-    return selected;
-    
-}
-document.getElementById('monedaEnt').onmouseleave = function() {
-    let checked = document.querySelectorAll('#monedaEnt :checked');
-    let selected = [...checked].map(option => option.value);
-    alert(selected);    
-}*/
-    let cotRecibido = document.getElementById('cotRecibido');
-    cotRecibido.value = dolarVenta;
+let cotRecibido = document.getElementById('cotRecibido');
+cotRecibido.value = dolarCompra;
 
 function compra() {
-
     let montoRecibido = document.getElementById('montoRecibido').value;
     
     let importeEntregado = document.getElementById('importeEntregado');
-    importeEntregado.value = montoRecibido / dolarVenta;
+    importeEntregado.value = montoRecibido * dolarCompra;
 }
-
 
 
 /* ---------------------------------------------------------------------------------- */
 
-/*console.log("--------------------");
-console.log("1 - Operación de Compra");
-console.log("2 - Operación de Venta");
-console.log("3 - Cambiar valores")
-console.log("4 - Salir");*/
+const btnVenta = document.querySelector('#btnVenta');
+const divVenta = document.querySelector('.formVenta');
 
-let operacion = prompt("Ingresar Tipo de Operación");
-if(operacion == 1) {
-
-    /* --- COMPRA DE DIVISAS --- */
-
-    /*console.log("--------------------");                                                                 
-    console.log("1 - Dólar");
-    console.log("2 - Euro");
-    console.log("3 - Peso Argentino");
-    console.log("4 - Real");
-    console.log("5 - Salir");*/
-
-
-
-    let compraMoneda = prompt("Ingresa Divisa");
-
-    if(compraMoneda == 1) {
-        let montoDolar = Number(prompt("Recibe Dólares"));
-        compraDivisa(dolarVenta, montoDolar, "Dólares", "Pesos Uruguayos");   
-    } else if(compraMoneda == 2) {
-        let montoEuro = Number(prompt("Recibe Euros"));
-        compraDivisa(euroCompra, montoEuro, "Euros", "Pesos Uruguayos");    
-    } else if(compraMoneda == 3) {
-        let montoPesoArg = Number(prompt("Recibe Pesos Argentinos"));
-        compraDivisa(pesoArgCompra, montoPesoArg, "Pesos Argentinos", "Pesos Uruguayos");
-    } else if(compraMoneda == 4) {
-        let montoReal = Number(prompt("Recibe Reales"));
-        compraDivisa(realCompra, montoReal, "Reales", "Pesos Uruguayos");
+btnVenta.addEventListener("click", function() {
+    if(divVenta.style.display === "block") {
+        divVenta.style.display = "none";
     } else {
-        if(compraMoneda == 5) {
-            salir();
-        }
+        divVenta.style.display = "block";
+        document.querySelector('#btnCompra').disabled = true;
+        document.querySelector('#btnModificar').disabled = true;
+    }
+});
+
+let cotVenta = document.getElementById('cotVenta');
+cotVenta.value = dolarVenta;
+
+function venta() {
+    let montoVenta = document.getElementById('montoVenta').value;
+    
+    let entregadoVenta = document.getElementById('entregadoVenta');
+    entregadoVenta.value = montoVenta / dolarVenta;
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+
+const listaReporte = document.querySelector('#listaReporte');
+const form = document.querySelector('#formCompra');
+let reportes = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    reportes = JSON.parse(localStorage.getItem('reportes'));
+
+    renderHTML();
+});
+
+form.addEventListener('submit', agregarReporte);
+
+function agregarReporte(evt) {
+    evt.preventDefault();
+    const montoRecibido = document.querySelector('#montoRecibido').value;
+    const cotRecibido = document.querySelector('#cotRecibido').value;
+    const importeEntregado = document.querySelector('#importeEntregado').value;
+
+    if(montoRecibido === '' && cotRecibido === '' && importeEntregado === '') {
+        console.log("Campos vacios");
     }
 
-    function compraDivisa(dolarCompra, montoDolar, divisa, segundaDivisa) {
-        let compra = montoDolar * dolarCompra;
-        document.write(`<div>
-                            <h3>Seleccionaste ${divisa}</h3>
-                            <p>Monto a comprar ${montoDolar.toFixed(2)} ${divisa} a ${dolarCompra.toFixed(2)}</p>
-                            <p>El total es de ${compra.toFixed(2)} = ${Math.round(compra).toFixed(2)} ${segundaDivisa}</p>
-                        </div>`); 
+    const listaReporteObj = {
+        id: Date.now(),
+        textMont: montoRecibido,
+        textCot: cotRecibido,
+        textImp: importeEntregado
     }
 
-    function salir() {
-        alert("Proceso cancelado");
+    reportes.push(listaReporteObj);
+
+    renderHTML();
+
+    form.reset();
+}
+
+
+function renderHTML() {
+    
+    limpiarHTML();
+
+    if(reportes.length > 0) {
+        reportes.forEach(importeEntregado => {
+            const li = document.createElement('li');
+
+            li.textContent = importeEntregado.textImp;
+            //li.textContent = cotRecibido.textCot;
+            //li.textContent = importeEntregado.textImp;
+            li.dataset.reporteId = importeEntregado.id;
+
+            listaReporte.appendChild(li);
+            
+        })
     }
 
-} else if(operacion == 2) {
+    sincroStorage();
+}
 
-    /* --- VENTA DE DIVISAS --- */
-    
-    console.log("--------------------");                                                                 
-    console.log("1 - Dólar");
-    console.log("2 - Euro");
-    console.log("3 - Peso Argentino");
-    console.log("4 - Real");
-    console.log("5 - Salir");
-
-    let ventaMoneda = prompt("Ingresa Divisa");
-
-    if(ventaMoneda == 1) {
-
-        let montoDolar = Number(prompt("Recibe Pesos Uruguayos"));
-        ventaDivisa(dolarVenta, montoDolar, "Dólares", "Pesos Uruguayos"); 
-
-    } else if(ventaMoneda == 2) {
-
-        let montoEuro = Number(prompt("Recibe Pesos Uruguayos"));
-        ventaDivisa(euroVenta, montoEuro, "Euros", "Pesos Uruguayos"); 
-
-    } else if(ventaMoneda == 3) {
-
-        let montoPesoArg = Number(prompt("Recibe Pesos Uruguayos"));
-        ventaDivisa(pesoArgVenta, montoPesoArg, "Pesos Argentinos", "Pesos Uruguayos");
-
-    } else if(ventaMoneda == 4) {
-
-        let montoReal = Number(prompt("Recibe Pesos Uruguayos"));
-        ventaDivisa(realVenta, montoReal, "Reales", "Pesos Uruguayos");
-
-    } else {
-
-        if(ventaMoneda == 5) {
-            salir();
-        }
-    }
-
-    function ventaDivisa(dolarVenta, montoDolar, divisa, segundaDivisa) {
-        let venta = montoDolar / dolarVenta;
-        document.write(`<div>
-                            <h3>Seleccionaste ${divisa}</h3>
-                            <p>Monto a vender ${montoDolar.toFixed(2)} ${segundaDivisa} a ${dolarVenta.toFixed(2)}</p>
-                            <p>El total es de ${venta.toFixed(2)} = ${Math.round(venta).toFixed(2)} ${divisa}</p>
-                        </div>`);
-    }
-
-    function salir() {
-        alert("Proceso cancelado");
-    }
-
-} else if(operacion == 3) {
-
-    console.log("--------------------");                                                                 
-    console.log("1 - Dólar");
-    console.log("2 - Euro");
-    console.log("3 - Peso Argentino");
-    console.log("4 - Real");
-    console.log("5 - Salir");
-
-    let valorDivisa = prompt("Que deseas cambiar?")
-
-    if(valorDivisa == 1) {
-
-        console.log("--------------------");                                                                 
-        console.log("1 - Dólar Compra");
-        console.log("2 - Dólar Venta");
-        console.log("3 - Arbitraje Dólar Compra");
-        console.log("4 - Arbitraje Dólar Venta");
-        console.log("5 - Salir");
-
-        let cambioDolar = prompt("Elige opción");
-
-        if(cambioDolar == 1) {
-
-            valorCompraDolar = Number(prompt("Ingresa nuevo valor"));
-            dolarCompra = valorCompraDolar;
-    
-        } else if(cambioDolar == 2) {
-    
-            valorVentaDolar = Number(prompt("Ingresa nuevo valor"));
-            dolarVenta = valorVentaDolar;
-    
-        } else if(cambioDolar == 3) {
-    
-            valorArbCompra = Number(prompt("Ingresa nuevo valor"));
-            arbDolarCompra = valorArbCompra;
-    
-        } else if(cambioDolar == 4) {
-    
-            valorArbVenta = Number(prompt("Ingresa nuevo valor"));
-            arbDolarVenta = valorArbVenta;
-    
-        } else {
-    
-            if(cambioDolar == 5) {
-                salir();
-            }
-    
-        }
-
-    } else if(valorDivisa == 2) {
-
-        console.log("--------------------");                                                                 
-        console.log("1 - Euro Compra");
-        console.log("2 - Euro Venta");
-        console.log("3 - Arbitraje Euro Compra");
-        console.log("4 - Arbitraje Euro Venta");
-        console.log("5 - Salir");
-
-        let cambioEuro = prompt("Elige opción");
-
-        if(cambioEuro == 1) {
-
-            valorCompraEuro = Number(prompt("Ingresa nuevo valor"));
-            euroCompra = valorCompraEuro;
-    
-        } else if(cambioEuro == 2) {
-    
-            valorVentaEuro = Number(prompt("Ingresa nuevo valor"));
-            euroVenta = valorVentaEuro;
-    
-        } else if(cambioEuro == 3) {
-    
-            valorArbCompra = Number(prompt("Ingresa nuevo valor"));
-            arbEuroCompra = valorArbCompra;
-    
-        } else if(cambioEuro == 4) {
-    
-            valorArbVenta = Number(prompt("Ingresa nuevo valor"));
-            arbEuroVenta = valorArbVenta;
-    
-        } else {
-    
-            if(cambioEuro == 5) {
-                salir();
-            }
-    
-        }    
-
-    } else if(valorDivisa == 3) {
-
-        console.log("--------------------");                                                                 
-        console.log("1 - Peso Argentino Compra");
-        console.log("2 - Peso Argentino Venta");
-        console.log("3 - Arbitraje Peso Argentino Compra");
-        console.log("4 - Arbitraje Peso Argentino Venta");
-        console.log("5 - Salir");
-
-        let cambioPesoArg = prompt("Elige opción");
-
-        if(cambioPesoArg == 1) {
-
-            valorCompraPesoArg = Number(prompt("Ingresa nuevo valor"));
-            pesoArgCompra = valorCompraPesoArg;
-    
-        } else if(cambioPesoArg == 2) {
-    
-            valorVentaPesoArg = Number(prompt("Ingresa nuevo valor"));
-            pesoArgVenta = valorVentaPesoArg;
-    
-        } else if(cambioPesoArg == 3) {
-    
-            valorArbCompra = Number(prompt("Ingresa nuevo valor"));
-            arbPesoArgCompra = valorArbCompra;
-    
-        } else if(cambioPesoArg == 4) {
-    
-            valorArbVenta = Number(prompt("Ingresa nuevo valor"));
-            arbPesoArgVenta = valorArbVenta;
-    
-        } else {
-    
-            if(cambioPesoArg == 5) {
-                salir();
-            }
-    
-        }
-
-    } else if(valorDivisa == 4) {
-
-        console.log("--------------------");                                                                 
-        console.log("1 - Real Compra");
-        console.log("2 - Real Venta");
-        console.log("3 - Arbitraje Real Compra");
-        console.log("4 - Arbitraje Real Venta");
-        console.log("5 - Salir");
-
-        let cambioReal = prompt("Elige opción");
-
-        if(cambioReal == 1) {
-
-            valorCompraReal = Number(prompt("Ingresa nuevo valor"));
-            realCompra = valorCompraReal;
-    
-        } else if(cambioReal == 2) {
-    
-            valorVentaReal = Number(prompt("Ingresa nuevo valor"));
-            realVenta = valorVentaReal;
-    
-        } else if(cambioReal == 3) {
-    
-            valorArbCompra = Number(prompt("Ingresa nuevo valor"));
-            arbRealCompra = valorArbCompra;
-    
-        } else if(cambioReal == 4) {
-    
-            valorArbVenta = Number(prompt("Ingresa nuevo valor"));
-            arbRealVenta = valorArbVenta;
-    
-        } else {
-    
-            if(cambioReal == 5) {
-                salir();
-            }
-    
-        }    
-
-    } else {
-
-        if(valorDivisa == 5) {
-            salir();
-        } 
-
-    }
-
-} else {
-
-    if(operacion == 4) {
-        salir();
+function limpiarHTML() {
+    while(listaReporte.firstChild) {
+        listaReporte.removeChild(listaReporte.firstChild);
     }
 }
 
-function salir() {
-    alert("Proceso cancelado");
+function sincroStorage() {
+    localStorage.setItem('reportes', JSON.stringify(reportes));
 }
-
+     

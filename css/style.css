@@ -60,6 +60,20 @@ p {
     text-decoration: underline;
 }
 
+#btnConfirm {
+    width: 20%;
+    padding: 16px 0;
+    background-color: #04aa6d;
+    border: none;
+    font-size: 1.8em;
+    color:#FFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+#btnConfirm:hover {
+    text-decoration: underline;
+}
+
 .sectForm {
     border: 1px solid #000;
 }
@@ -73,7 +87,7 @@ p {
     display:inline-flex;
 }*/
 
-#formCompra {
+.form, .formVenta {
     display: none;
 }
 
@@ -97,11 +111,6 @@ input[type=text] {
     font-size: 1.5em;
 }
 
-#cotRecibido {
-    -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
 
 
 
