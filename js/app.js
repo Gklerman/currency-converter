@@ -195,11 +195,11 @@ const listaReporte = document.querySelector('#listaReporte');
 const form = document.querySelector('#formCompra');
 let reportes = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     reportes = JSON.parse(localStorage.getItem('reportes'));
 
     renderHTML();
-});
+});*/
 
 form.addEventListener('submit', agregarReporte);
 
@@ -258,4 +258,3 @@ function limpiarHTML() {
 function sincroStorage() {
     localStorage.setItem('reportes', JSON.stringify(reportes));
 }
-     
