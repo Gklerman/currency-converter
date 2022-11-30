@@ -32,6 +32,7 @@ let arbRealVenta = 4.17;
 const divisas = [
     {
         moneda: 'Dólar',
+        simbolo: 'U$S',
         compra: dolarCompra,
         venta: dolarVenta,
         arbitrajeCompra: arbDolarCompra,
@@ -39,6 +40,7 @@ const divisas = [
     },
     {
         moneda: 'Euro',
+        simbolo: '€',
         compra: euroCompra,
         venta: euroVenta,
         arbitrajeCompra: arbEuroCompra,
@@ -46,6 +48,7 @@ const divisas = [
     },
     {
         moneda: 'Peso Argentino',
+        simbolo: '$AR',
         compra: pesoArgCompra,
         venta: pesoArgVenta,
         arbitrajeCompra: arbPesoArgCompra,
@@ -53,6 +56,7 @@ const divisas = [
     },
     {
         moneda: 'Real',
+        simbolo: '$R',
         compra: realCompra,
         venta: realVenta,
         arbitrajeCompra: arbRealCompra,
@@ -139,122 +143,19 @@ const iniDia = () => {
 
 /* ---------------------------------------------------------------------------------- */
 
-const btnCompra = document.querySelector('#btnCompra');
-const divCompra = document.querySelector('.form');
-
-btnCompra.addEventListener("click", function() {
-    if(divCompra.style.display === "block") {
-        divCompra.style.display = "none";
-    } else {
-        divCompra.style.display = "block";
-        document.querySelector('#btnVenta').disabled = true;
-        document.querySelector('#btnModificar').disabled = true;
-    }
-});
-
-let cotRecibido = document.getElementById('cotRecibido');
-cotRecibido.value = dolarCompra;
-
-function compra() {
-    let montoRecibido = document.getElementById('montoRecibido').value;
-    
-    let importeEntregado = document.getElementById('importeEntregado');
-    importeEntregado.value = montoRecibido * dolarCompra;
-}
 
 
 /* ---------------------------------------------------------------------------------- */
 
-const btnVenta = document.querySelector('#btnVenta');
-const divVenta = document.querySelector('.formVenta');
 
-btnVenta.addEventListener("click", function() {
-    if(divVenta.style.display === "block") {
-        divVenta.style.display = "none";
-    } else {
-        divVenta.style.display = "block";
-        document.querySelector('#btnCompra').disabled = true;
-        document.querySelector('#btnModificar').disabled = true;
-    }
-});
-
-let cotVenta = document.getElementById('cotVenta');
-cotVenta.value = dolarVenta;
-
-function venta() {
-    let montoVenta = document.getElementById('montoVenta').value;
-    
-    let entregadoVenta = document.getElementById('entregadoVenta');
-    entregadoVenta.value = montoVenta / dolarVenta;
-}
 
 
 /* ---------------------------------------------------------------------------------- */
 
-const listaReporte = document.querySelector('#listaReporte');
-const form = document.querySelector('#formCompra');
-let reportes = [];
-
-/*document.addEventListener('DOMContentLoaded', () => {
-    reportes = JSON.parse(localStorage.getItem('reportes'));
-
-    renderHTML();
-});*/
-
-form.addEventListener('submit', agregarReporte);
-
-function agregarReporte(evt) {
-    evt.preventDefault();
-    const montoRecibido = document.querySelector('#montoRecibido').value;
-    const cotRecibido = document.querySelector('#cotRecibido').value;
-    const importeEntregado = document.querySelector('#importeEntregado').value;
-
-    if(montoRecibido === '' && cotRecibido === '' && importeEntregado === '') {
-        console.log("Campos vacios");
-    }
-
-    const listaReporteObj = {
-        id: Date.now(),
-        textMont: montoRecibido,
-        textCot: cotRecibido,
-        textImp: importeEntregado
-    }
-
-    reportes.push(listaReporteObj);
-
-    renderHTML();
-
-    form.reset();
-}
 
 
-function renderHTML() {
+
     
-    limpiarHTML();
 
-    if(reportes.length > 0) {
-        reportes.forEach(importeEntregado => {
-            const li = document.createElement('li');
 
-            li.textContent = importeEntregado.textImp;
-            //li.textContent = cotRecibido.textCot;
-            //li.textContent = importeEntregado.textImp;
-            li.dataset.reporteId = importeEntregado.id;
-
-            listaReporte.appendChild(li);
-            
-        })
-    }
-
-    sincroStorage();
-}
-
-function limpiarHTML() {
-    while(listaReporte.firstChild) {
-        listaReporte.removeChild(listaReporte.firstChild);
-    }
-}
-
-function sincroStorage() {
-    localStorage.setItem('reportes', JSON.stringify(reportes));
-}
+/* ---------------------------------------------------------------------------------- */

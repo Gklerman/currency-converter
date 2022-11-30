@@ -166,33 +166,33 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-1 col-md-3 impOne">
                             <label class="box" for="montoRecibido"><p>Importe Recibido</p></label><br>
-                            <input type="text" id="montoRecibido" name="montoRecibido" onfocusout="compra()">
+                            <input type="number" id="montoRecibido" name="montoRecibido" onfocusout="compra()">
                         </div>
                         <div class="col-1 col-md-2 cotOne">
                             <label class="box" for="cotRecibido"><p>Cotización</p></label><br>
-                            <input type="text" id="cotRecibido" name="cotRecibido" disabled>
+                            <input type="number" id="cotRecibido" name="cotRecibido" disabled>
                         </div>
                         <div class="col-1 col-md-2 arbOne">
                             <label class="box" for="arbRecibido"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbRecibido" name="arbRecibido">
+                            <input type="number" id="arbRecibido" name="arbRecibido">
                         </div>
                     </div>
                     <div class="row pb-4 d-flex justify-content-center">
                         <div class="col-1 col-md-3 impTwo">
                             <label class="box" for="importeEntregado"><p>Importe Entregado</p></label><br>
-                            <input type="text" id="importeEntregado" name="importeEntregado">
+                            <input type="number" step="0.01" id="importeEntregado" name="importeEntregado">
                         </div>
                         <div class="col-1 col-md-2 cotTwo">
                             <label class="box" for="cotEntregado"><p>Cotización</p></label><br>
-                            <input type="text" id="cotEntregado" name="cotEntregado">
+                            <input type="number" id="cotEntregado" name="cotEntregado">
                         </div>
                         <div class="col-1 col-md-2 arbTwo">
                             <label class="box" for="arbEntregado"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbEntregado" name="arbEntregado">
+                            <input type="number" id="arbEntregado" name="arbEntregado">
                         </div>
                     </div>
                     <div class="col-1 col-md-11 d-flex justify-content-end mb-3">
-                        <input type="submit" id="btnConfirm" value="Confirmar"></input>
+                        <input type="submit" onclick="window.location.reload()" id="confirmCompra" value="Confirmar"></input>
                     </div>
                 </form>
 
@@ -226,33 +226,33 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-1 col-md-3 impOne">
                             <label class="box" for="montoVenta"><p>Importe Recibido</p></label><br>
-                            <input type="text" id="montoVenta" name="montoVenta" onfocusout="venta()">
+                            <input type="number" id="montoVenta" name="montoVenta" onfocusout="venta()">
                         </div>
                         <div class="col-1 col-md-2 cotOne">
                             <label class="box" for="cotVenta"><p>Cotización</p></label><br>
-                            <input type="text" id="cotVenta" name="cotVenta" disabled>
+                            <input type="number" id="cotVenta" name="cotVenta" disabled>
                         </div>
                         <div class="col-1 col-md-2 arbOne">
                             <label class="box" for="arbRecibido"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbRecibido" name="arbRecibido">
+                            <input type="number" id="arbRecibido" name="arbRecibido">
                         </div>
                     </div>
                     <div class="row pb-4 d-flex justify-content-center">
                         <div class="col-1 col-md-3 impTwo">
                             <label class="box" for="entregadoVenta"><p>Importe Entregado</p></label><br>
-                            <input type="text" id="entregadoVenta" name="entregadoVenta">
+                            <input type="number" step="0.01" id="entregadoVenta" name="entregadoVenta">
                         </div>
                         <div class="col-1 col-md-2 cotTwo">
                             <label class="box" for="cotEntregado"><p>Cotización</p></label><br>
-                            <input type="text" id="cotEntregado" name="cotEntregado">
+                            <input type="number" id="cotEntregado" name="cotEntregado">
                         </div>
                         <div class="col-1 col-md-2 arbTwo">
                             <label class="box" for="arbEntregado"><p>Arbitraje</p></label><br>
-                            <input type="text" id="arbEntregado" name="arbEntregado">
+                            <input type="number" id="arbEntregado" name="arbEntregado">
                         </div>
                     </div>
                     <div class="col-1 col-md-11 d-flex justify-content-end mb-3">
-                        <input type="submit" id="btnConfirm" value="Confirmar"></input>
+                        <input type="submit" onclick="window.location.reload()" id="confirmVenta" value="Confirmar"></input>
                     </div>
                 </form>
 
@@ -261,11 +261,24 @@
 
         <section class="row mt-4">
 
-            <div>
+            <div class="reporte d-flex justify-content-center align-content-center pt-1">
                 <h2>Reporte Diario</h2>
-                <ul id="listaReporte"></ul>
             </div>
-
+            <div class="row repo mb-2">
+                <div class="col-md-6 d-flex justify-content-center pt-1">
+                    <h3>Compra</h3>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center pt-1">
+                    <h3>Venta</h3>
+                </div>
+                <div class="compra col-md-6 d-flex">
+                    <ul id="reporteCompra" class="pt-2"></ul>
+                </div>
+                <div class="venta col-md-6 d-flex">
+                    <ul id="reporteVenta" class="pt-2"></ul>   
+                </div>
+            </div>
+            
         </section>
     </main>
 
@@ -276,6 +289,9 @@
     
 
     <script src="js/app.js"></script>
+    <script src="js/compra.js"></script>
+    <script src="js/venta.js"></script>
+
     
 
     
