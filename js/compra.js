@@ -14,10 +14,41 @@ btnCompra.addEventListener("click", function() {
 });
 
 
-let cotRecibido = document.getElementById('cotRecibido');
-cotRecibido.value = dolarCompra;
+//let cotRecibido = document.getElementById('cotRecibido');
+//cotRecibido.value = dolarCompra;
+
+addEventListener('load',selectDivisas,false);
+
+function selectDivisas() {
+    document.getElementById('monedaRec').addEventListener('change',divisasRec,false);
+    document.getElementById('monedaEnt').addEventListener('change',divisasEnt,false);
+}
+
+
+/*function divisasRec() {
+    //const monedaRec = document.getElementById('monedaRec').value;
+    //const monedaEnt = document.getElementById('monedaEnt').value;
+
+    if(monedaRec === divisas.moneda) {
+        let cotRecibido = document.getElementById('cotRecibido');
+        cotRecibido.innerHTML = divisas.compra;
+        console.log(divisas.compra)             
+    }
+}
+
+divisasRec();*/
+function divisasRec() {
+    //alert(document.getElementById('monedaEnt').value);
+    console.log(document.getElementById('monedaRec').value);
+}
+function divisasEnt() {
+    //alert(document.getElementById('monedaEnt').value);
+    console.log(document.getElementById('monedaEnt').value);
+}
+
 
 function compra() {
+    
     let montoRecibido = document.getElementById('montoRecibido').value;
     
     let importeEntregado = document.getElementById('importeEntregado');
@@ -31,7 +62,7 @@ let reportesCompra = [];
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    reportesCompra = JSON.parse(localStorage.getItem('reportesCompra'));
+    reportesCompra = JSON.parse(localStorage.getItem('reportesCompra')) || [];
 
     renderCompra();
 });

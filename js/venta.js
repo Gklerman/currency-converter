@@ -13,8 +13,32 @@ btnVenta.addEventListener("click", function() {
     }
 });
 
-let cotVenta = document.getElementById('cotVenta');
-cotVenta.value = dolarVenta;
+/* ---------------------------------------------------------------------------------- */
+//let cotVenta = document.getElementById('cotVenta');
+//cotVenta.value = dolarVenta;
+
+addEventListener('load',divisasVenta,false);
+
+function divisasVenta() {
+    document.getElementById('recVenta').addEventListener('change',recVenta,false);
+    document.getElementById('entVenta').addEventListener('change',entVenta,false);
+}
+
+/*function recVenta() {
+    console.log(document.getElementById('recVenta').value);
+    const monedaUno = document.getElementById('recVenta').value;
+
+    if(monedaUno === divisas.moneda) {
+        document.getElementById("cotEntregado").innerHTML = divisas.compra;    
+    }
+}*/
+function entVenta() {
+    console.log(document.getElementById('entVenta').value);
+    const monedaDos = document.getElementById('recVenta').value;
+}
+
+
+/* ---------------------------------------------------------------------------------- */
 
 function venta() {
     let montoVenta = document.getElementById('montoVenta').value;
@@ -28,7 +52,7 @@ const reporteVenta = document.querySelector('#reporteVenta');
     let reportesVenta = [];
 
     document.addEventListener('DOMContentLoaded', () => {
-        reportesVenta = JSON.parse(localStorage.getItem('reportesVenta'));
+        reportesVenta = JSON.parse(localStorage.getItem('reportesVenta')) || [];
     
         renderVenta();
     });

@@ -31,7 +31,7 @@ let arbRealVenta = 4.17;
 
 const divisas = [
     {
-        moneda: 'Dólar',
+        moneda: 'dolar',
         simbolo: 'U$S',
         compra: dolarCompra,
         venta: dolarVenta,
@@ -39,7 +39,7 @@ const divisas = [
         arbitrajeVenta: arbDolarVenta
     },
     {
-        moneda: 'Euro',
+        moneda: 'euro',
         simbolo: '€',
         compra: euroCompra,
         venta: euroVenta,
@@ -47,7 +47,7 @@ const divisas = [
         arbitrajeVenta: arbEuroVenta  
     },
     {
-        moneda: 'Peso Argentino',
+        moneda: 'pesoArg',
         simbolo: '$AR',
         compra: pesoArgCompra,
         venta: pesoArgVenta,
@@ -55,7 +55,7 @@ const divisas = [
         arbitrajeVenta: arbPesoArgVenta  
     },
     {
-        moneda: 'Real',
+        moneda: 'real',
         simbolo: '$R',
         compra: realCompra,
         venta: realVenta,
@@ -143,12 +143,44 @@ const iniDia = () => {
 
 /* ---------------------------------------------------------------------------------- */
 
+/*addEventListener('load',selectDivisas,false);
 
+function selectDivisas() {
+    document.getElementById('monedaRec').addEventListener('change',divisasRec,false);
+    document.getElementById('monedaEnt').addEventListener('change',divisasEnt,false);
+}*/
+
+
+/*function divisasRec() {
+    const monedaRec = document.getElementById('monedaRec').value;
+    const monedaEnt = document.getElementById('monedaEnt').value;
+
+    if(monedaRec === divisas.moneda) {
+        let cotRecibido = document.getElementById('cotRecibido');
+        cotRecibido.innerHTML = divisas.compra;
+        console.log(divisas.compra)             
+    }
+}*/
+
+//divisasRec();
+/*function divisasRec() {
+    //alert(document.getElementById('monedaEnt').value);
+    console.log(document.getElementById('monedaRec').value);
+}
+function divisasEnt() {
+    //alert(document.getElementById('monedaEnt').value);
+    console.log(document.getElementById('monedaEnt').value);
+}*/
 
 /* ---------------------------------------------------------------------------------- */
 
+/*function recVenta() {
+    //console.log(document.getElementById('recVenta').value);
+    let monedaUno = document.getElementById('recVenta').value;
+    console.log(monedaUno);
 
 
+}*/
 
 /* ---------------------------------------------------------------------------------- */
 

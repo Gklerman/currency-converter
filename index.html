@@ -145,8 +145,9 @@
                     <div class="col-3 col-md-5">
                         <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
                         <select id="monedaRec" class="selectBox" maxlength="16">
-                            <option disabled>Seleccionar Moneda</option>
-                            <option id="dolarRec" value="dolar">Dólares</option>
+                            <option selected disabled>Seleccionar Moneda</option>
+                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
+                            <option id="dolar" value="dolar">Dólares</option>
                             <option id="euro" value="euro">Euros</option>
                             <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
                             <option id="real" value="real">Reales</option>
@@ -155,9 +156,9 @@
                     <div class="col-3 col-md-5">
                         <label class="boxOp" for="monedaEnt"><p>Moneda Entregada</p></label>
                         <select id="monedaEnt" class="selectBox" maxlength="16">
-                            <option disabled>Seleccionar Moneda</option>
+                            <option selected disabled>Seleccionar Moneda</option>
                             <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
-                            <option value="dolarEnt">Dólares</option>
+                            <option value="dolar">Dólares</option>
                             <option value="euro">Euros</option>
                             <option value="pesoArg">Pesos Argentinos</option>
                             <option value="real">Reales</option>
@@ -203,21 +204,22 @@
             <div class="pt-3 d-flex justify-content-center align-items-center">
                 <form id="formVenta" class="formulario row d-flex justify-content-center pt-3">
                     <div class="col-3 col-md-5">
-                        <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
-                        <select id="monedaRec" class="selectBox" maxlength="16">
-                            <option disabled>Seleccionar Moneda</option>
+                        <label class="boxOp" for="recVenta"><p>Moneda Recibida</p></label>
+                        <select id="recVenta" class="selectBox" maxlength="16">
+                            <option selected disabled>Seleccionar Moneda</option>
                             <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
-                            <option id="dolarRec" value="dolar">Dólares</option>
+                            <option id="dolar" value="dolar">Dólares</option>
                             <option id="euro" value="euro">Euros</option>
                             <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
                             <option id="real" value="real">Reales</option>
                         </select>
                     </div>
                     <div class="col-3 col-md-5">
-                        <label class="boxOp" for="monedaEnt"><p>Moneda Entregada</p></label>
-                        <select id="monedaEnt" class="selectBox" maxlength="16">
-                            <option disabled>Seleccionar Moneda</option>
-                            <option value="dolarEnt">Dólares</option>
+                        <label class="boxOp" for="entVenta"><p>Moneda Entregada</p></label>
+                        <select id="entVenta" class="selectBox" maxlength="16">
+                            <option selected disabled>Seleccionar Moneda</option>
+                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
+                            <option value="dolar">Dólares</option>
                             <option value="euro">Euros</option>
                             <option value="pesoArg">Pesos Argentinos</option>
                             <option value="real">Reales</option>
@@ -226,7 +228,7 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-1 col-md-3 impOne">
                             <label class="box" for="montoVenta"><p>Importe Recibido</p></label><br>
-                            <input type="number" id="montoVenta" name="montoVenta" onfocusout="venta()">
+                            <input type="number" id="montoVenta" name="montoVenta" onchange="venta()">
                         </div>
                         <div class="col-1 col-md-2 cotOne">
                             <label class="box" for="cotVenta"><p>Cotización</p></label><br>
