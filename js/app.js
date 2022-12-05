@@ -11,6 +11,8 @@ const datosBusqueda = {
 
 let pesoUruCompra = 1;
 let pesoUruVenta = 1;
+let arbPesoUruCompra = 1;
+let arbPesoUruVenta = 1;
 let dolarCompra = 38.65;
 let dolarVenta = 41.15;
 let arbDolarCompra = 1.00;
@@ -30,6 +32,14 @@ let arbRealVenta = 4.17;
 
 
 const divisas = [
+    {
+        numero: 1,
+        moneda: document.getElementById('pesoUru').value,
+        compra: pesoUruCompra,
+        venta: pesoUruVenta,
+        arbitrajeCompra: arbPesoUruCompra,
+        arbitrajeVenta: arbPesoUruVenta
+    },
     {
         moneda: 'dolar',
         simbolo: 'U$S',
