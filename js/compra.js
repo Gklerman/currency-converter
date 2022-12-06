@@ -16,18 +16,6 @@ btnCompra.addEventListener("click", function() {
 
 /* libreria formato fecha */
 
-
-
-
-
-
-
-
-
-
-
-
-
 //let cotRecibido = document.getElementById('cotRecibido');
 //cotRecibido.value = dolarCompra;
 
@@ -53,36 +41,77 @@ function selectDivisas() {
     console.log(document.getElementById('monedaRec').value);*/
 
 
-
-/*function divisasRec() {
-    let cotRecibido = document.getElementById('cotRecibido');
-    cotRecibido.value = dolarCompra;
-    //document.getElementById('dolarEnt').disabled = true;
-    //console.log(cotRecibido);
-    //const monedaRec = document.getElementById('monedaRec').value;
-    //const monedaEnt = document.getElementById('monedaEnt').value;
-
-}*/
-
-
 function divisasRec() {
     //console.log(document.getElementById('monedaRec').value);
     let divisaUno = document.getElementById('monedaRec').value;
-    if(divisaUno === 'pesoUru') {
-        let cotRecibido = document.getElementById('cotRecibido');
-        cotRecibido.value = pesoUruCompra;
-    } else if(divisaUno === 'dolar') {
-        let cotRecibido = document.getElementById('cotRecibido');
+    let cotRecibido = document.getElementById('cotRecibido');
+    let arbRecibido = document.getElementById('arbRecibido');
+
+    if(divisaUno === 'dolar') {
         cotRecibido.value = dolarCompra;
+        arbRecibido.value = arbDolarCompra;
+
+        document.getElementById('dolarEnt').disabled = true;
+        document.getElementById('euroEnt').disabled = false;
+        document.getElementById('pesoArgEnt').disabled = false;
+
     } else if (divisaUno === 'euro') {
-        let cotRecibido = document.getElementById('cotRecibido');
-        cotRecibido.value = euroCompra;    
+        cotRecibido.value = euroCompra; 
+        arbRecibido.value = arbEuroCompra;
+
+        document.getElementById('dolarEnt').disabled = false;
+        document.getElementById('euroEnt').disabled = true;
+        
     } else if (divisaUno === 'pesoArg') {
-        let cotRecibido = document.getElementById('cotRecibido');
-        cotRecibido.value = pesoArgCompra;    
+        cotRecibido.value = pesoArgCompra;
+        arbRecibido.value = arbPesoArgCompra;
+        
+        document.getElementById('euroEnt').disabled = false;
+        document.getElementById('pesoArgEnt').disabled = true;
+        document.getElementById('realEnt').disabled = false;
+
+
     } else if (divisaUno === 'real') {
-        let cotRecibido = document.getElementById('cotRecibido');
-        cotRecibido.value = realCompra;    
+        cotRecibido.value = realCompra;
+        arbRecibido.value = arbRealCompra; 
+
+        document.getElementById('euroEnt').disabled = false;
+        document.getElementById('pesoArgEnt').disabled = false;
+        document.getElementById('realEnt').disabled = true;
+
+    } else {
+        console.log('ERROR');
+    }
+    //alert(document.getElementById('monedaEnt').value);
+    //console.log(document.getElementById('monedaEnt').value);
+}
+
+function divisasEnt() {
+    //console.log(document.getElementById('monedaRec').value);
+    let divisaDos = document.getElementById('monedaEnt').value;
+    let cotEntregado = document.getElementById('cotEntregado');
+    let arbEntregado = document.getElementById('arbEntregado');
+
+    if(divisaDos === 'pesoUru') {
+        cotEntregado.value = pesoUruCompra;
+        arbEntregado.value = arbPesoUruCompra; 
+
+    } else if(divisaDos === 'dolar') {
+        cotEntregado.value = dolarCompra;
+        arbEntregado.value = arbDolarCompra;
+
+    } else if (divisaDos === 'euro') {
+        cotEntregado.value = euroCompra; 
+        arbEntregado.value = arbEuroCompra;
+        
+    } else if (divisaDos === 'pesoArg') {
+        cotEntregado.value = pesoArgCompra;
+        arbEntregado.value = arbPesoArgCompra;
+        
+    } else if (divisaDos === 'real') {
+        cotEntregado.value = realCompra;
+        arbEntregado.value = arbRealCompra;
+
     } else {
         console.log('ERROR');
     }
@@ -154,7 +183,7 @@ function compra() {
     console.log(montoRecibido);
     let importeEntregado = document.getElementById('importeEntregado');
    // console.log(importeEntregado);
-    let compra = dolarCompra * montoRecibido;
+   importeEntregado.value = dolarCompra * montoRecibido;
     //console.log(compra);
 }
 

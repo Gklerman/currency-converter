@@ -13,6 +13,7 @@ let pesoUruCompra = 1;
 let pesoUruVenta = 1;
 let arbPesoUruCompra = 1;
 let arbPesoUruVenta = 1;
+let dolar = 1;
 let dolarCompra = 38.65;
 let dolarVenta = 41.15;
 let arbDolarCompra = 1.00;

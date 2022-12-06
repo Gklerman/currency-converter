@@ -146,7 +146,7 @@
                         <label class="boxOp" for="monedaRec"><p>Moneda Recibida</p></label>
                         <select id="monedaRec" class="selectBox" maxlength="16">
                             <option selected disabled>Seleccionar Moneda</option>
-                            <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
+                            <!-- <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option> -->
                             <option id="dolar" value="dolar">Dólares</option>
                             <option id="euro" value="euro">Euros</option>
                             <option id="pesoArg" value="pesoArg">Pesos Argentinos</option>
@@ -159,9 +159,9 @@
                             <option selected disabled>Seleccionar Moneda</option>
                             <option id="pesoUru" value="pesoUru">Pesos Uruguayos</option>
                             <option id="dolarEnt" value="dolar">Dólares</option>
-                            <option value="euro">Euros</option>
-                            <option value="pesoArg">Pesos Argentinos</option>
-                            <option value="real">Reales</option>
+                            <option id="euroEnt" value="euro">Euros</option>
+                            <option id="pesoArgEnt" value="pesoArg">Pesos Argentinos</option>
+                            <option id="realEnt" value="real">Reales</option>
                         </select>
                     </div>
                     <div class="row d-flex justify-content-center">
@@ -175,7 +175,7 @@
                         </div>
                         <div class="col-1 col-md-2 arbOne">
                             <label class="box" for="arbRecibido"><p>Arbitraje</p></label><br>
-                            <input type="number" id="arbRecibido" name="arbRecibido">
+                            <input type="number" id="arbRecibido" name="arbRecibido" disabled>
                         </div>
                     </div>
                     <div class="row pb-4 d-flex justify-content-center">
@@ -185,11 +185,11 @@
                         </div>
                         <div class="col-1 col-md-2 cotTwo">
                             <label class="box" for="cotEntregado"><p>Cotización</p></label><br>
-                            <input type="number" id="cotEntregado" name="cotEntregado">
+                            <input type="number" id="cotEntregado" name="cotEntregado" disabled>
                         </div>
                         <div class="col-1 col-md-2 arbTwo">
                             <label class="box" for="arbEntregado"><p>Arbitraje</p></label><br>
-                            <input type="number" id="arbEntregado" name="arbEntregado">
+                            <input type="number" id="arbEntregado" name="arbEntregado" disabled>
                         </div>
                     </div>
                     <div class="col-1 col-md-11 d-flex justify-content-end mb-3">
