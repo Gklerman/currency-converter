@@ -34,8 +34,8 @@ let arbRealVenta = 4.17;
 
 const divisas = [
     {
-        numero: 1,
-        moneda: document.getElementById('pesoUru').value,
+        moneda: 'pesoUru',
+        simbolo: 'UY$',
         compra: pesoUruCompra,
         venta: pesoUruVenta,
         arbitrajeCompra: arbPesoUruCompra,
