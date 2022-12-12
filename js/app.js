@@ -1,13 +1,88 @@
 
-/* --- COTIZACION DIVISAS --- */
+const key = '370ad87a08aca4b49527334f';
 
-const datosBusqueda = {
-    moneda: '',
-    compra: '',
-    venta: '',
-    arbitrajeCompra: '',
-    arbitrajeVenta: ''
+const lista = document.querySelectorAll(".lista select");
+const divisaUno = document.querySelector(".divisaUno select");
+const divisaDos = document.querySelector(".divisaDos select");
+boton = document.querySelector("form button");
+
+for (let i = 0; i < lista.length; i++) {
+
+    for(divisasPaises in codigoPais) {
+        let selected;
+        if(i == 0) {
+            selected = divisasPaises == "USD" ? "selected" : ""; 
+        } else if(i == 1) {
+            selected = divisasPaises == "UYU" ? "selected" : "";    
+        }
+
+        let option = `<option value="${divisasPaises}" ${selected}>${divisasPaises}</option>`;
+        lista[i].insertAdjacentHTML("beforeend", option);
+    }
+    lista[i].addEventListener("change", el => {
+        loadFlag(el.target);    
+    });    
 }
+
+function loadFlag(element) {
+    for(codigo in codigoPais) {
+        if(codigo == element.value) {
+            let img = element.parentElement.querySelector("img");
+            img.src = `https://flagsapi.com/${codigoPais[codigo]}/flat/32.png`;
+        }
+    }
+}
+
+window.addEventListener("load", () => {
+    confirmCompra();
+});
+
+boton.addEventListener("click", el => {
+    el.preventDefault();
+    confirmCompra();
+});
+
+
+function confirmCompra() {
+    const monto = document.querySelector(".monto input");
+    const cambioTxt = document.querySelector(".cambio");
+    const importe = document.querySelector(".importe");
+    let montoRecibido = monto.value;
+    
+    if(montoRecibido == "" || montoRecibido == "0") {
+        monto.value = "1";
+        montoRecibido = 1;
+    }
+
+    cambioTxt.innerText = "Espere un momento...";
+    let url = `https://v6.exchangerate-api.com/v6/${key}/latest/${divisaUno.value}`;
+    fetch(url) 
+        .then(respuesta => {
+            return respuesta.json();   
+        })
+        .then(resultado => {
+            let cambio = resultado.conversion_rates[divisaDos.value];
+            
+            let total = (montoRecibido * cambio).toFixed(2);
+            cambioTxt.innerText = "";
+            importe.value = total;
+            
+        })
+        .catch(() => {
+            cambioTxt.innerText = "No hay datos.";
+        });
+}    
+
+class Divisa {
+    constructor(moneda, simbolo, compra, venta, arbCompra, arbVenta) {
+        this.moneda = moneda;
+        this.simbolo = simbolo;
+        this.compra = compra;
+        this.venta = venta;
+        this.arbCompra = arbCompra;
+        this.arbVenta = arbVenta;
+    }
+};
 
 let pesoUruCompra = 1;
 let pesoUruVenta = 1;
@@ -75,63 +150,6 @@ const divisas = [
     }
 ];
 
-function mostrarDivisas(divisas) {
-    divisas.forEach(tipoDivisa => {
-        console.log(`Moneda: ${tipoDivisa.moneda} Compra: ${tipoDivisa.compra} Venta: ${tipoDivisa.venta} Arbitraje Compra: ${tipoDivisa.arbitrajeCompra} Arbitraje Venta:${tipoDivisa.arbitrajeVenta}`);
-        document.write(`<p>Moneda: ${tipoDivisa.moneda} Compra: ${tipoDivisa.compra} Venta: ${tipoDivisa.venta} Arbitraje Compra: ${tipoDivisa.arbitrajeCompra} Arbitraje Venta: ${tipoDivisa.arbitrajeVenta}</p></div>`);
-    });
-}
-
-function filtrarDivisa() {
-    const res = divisas.filter(filtrarMoneda).filter(filtrarCompra).filter(filtrarVenta).filter(filtrarArbCompra).filter(filtrarArbVenta);
-    if (res.length) {
-        mostrarDivisas(res);
-    } else {
-        noResultados();
-    }
-}
-
-function noResultados() {
-    console.log("No se encontraron coincidencias");
-    document.write("No se encontraron coincidencias");
-}
-
-function filtrarMoneda(tipoDivisa) {
-    if(datosBusqueda.moneda) {
-        return tipoDivisa.moneda === datosBusqueda.moneda;
-    }
-    return tipoDivisa;
-}
-function filtrarCompra(tipoDivisa) {
-    if(datosBusqueda.compra) {
-        return tipoDivisa.compra === datosBusqueda.compra;
-    }
-    return tipoDivisa;
-}
-function filtrarVenta(tipoDivisa) {
-    if(datosBusqueda.venta) {
-        return tipoDivisa.venta === datosBusqueda.venta;
-    }
-    return tipoDivisa;
-}
-function filtrarArbCompra(tipoDivisa) {
-    if(datosBusqueda.arbitrajeCompra) {
-        return tipoDivisa.arbitrajeCompra === datosBusqueda.arbitrajeCompra;
-    }
-    return tipoDivisa;
-}
-function filtrarArbVenta(tipoDivisa) {
-    if(datosBusqueda.arbitrajeVenta) {
-        return tipoDivisa.arbitrajeVenta === datosBusqueda.arbitrajeVenta;
-    }
-    return tipoDivisa;
-}
-
-//mostrarDivisas(divisas);
-filtrarDivisa();
-
-/* ---------------------------------------------------------------------------------- */
-
 const iniDia = () => {
     document.getElementById("dolarCompra").innerHTML = `${dolarCompra}`;
     document.getElementById("dolarVenta").innerHTML = `${dolarVenta}`;
@@ -152,53 +170,29 @@ const iniDia = () => {
     document.querySelector('#btnIniciar').disabled = true;
 }
 
-/* ---------------------------------------------------------------------------------- */
+/*const pesoUru = new Divisa("Peso Uruguayo", "UYU", 1, 1, 1, 1);
+const dolar = new Divisa("Dolar", "U$S", 38.65, 41.15, 1, 1);
+const euro = new Divisa("Euro", "€", 37.54, 42.14, 0.97, 1.02);
+const pesoArg = new Divisa("Peso Argentino", "AR$", 0.05, 0.35, 823, 110.42);
+const real = new Divisa("Real", "R$", 7.25, 9.25, 5.67, 4.17);
 
-/*addEventListener('load',selectDivisas,false);
 
-function selectDivisas() {
-    document.getElementById('monedaRec').addEventListener('change',divisasRec,false);
-    document.getElementById('monedaEnt').addEventListener('change',divisasEnt,false);
+const iniDia = () => {
+    document.getElementById("dolarCompra").innerHTML = `${dolar.compra}`;
+    document.getElementById("dolarVenta").innerHTML = `${dolar.venta}`;
+    document.getElementById("arbDolarCompra").innerHTML = `${dolar.arbCompra}`;
+    document.getElementById("arbDolarVenta").innerHTML = `${dolar.arbVenta}`;
+    document.getElementById("euroCompra").innerHTML = `${euro.compra}`;
+    document.getElementById("euroVenta").innerHTML = `${euro.venta}`;
+    document.getElementById("arbEuroCompra").innerHTML = `${euro.arbCompra}`;
+    document.getElementById("arbEuroVenta").innerHTML = `${euro.arbVenta}`;
+    document.getElementById("pesoArgCompra").innerHTML = `${pesoArg.compra}`;
+    document.getElementById("pesoArgVenta").innerHTML = `${pesoArg.venta}`;
+    document.getElementById("arbPesoArgCompra").innerHTML = `${pesoArg.arbCompra}`;
+    document.getElementById("arbPesoArgVenta").innerHTML = `${pesoArg.arbVenta}`;
+    document.getElementById("realCompra").innerHTML = `${real.compra}`;
+    document.getElementById("realVenta").innerHTML = `${real.venta}`;
+    document.getElementById("arbRealCompra").innerHTML = `${real.arbCompra}`;
+    document.getElementById("arbRealVenta").innerHTML = `${real.arbVenta}`;
+    document.querySelector('#btnIniciar').disabled = true;
 }*/
-
-
-/*function divisasRec() {
-    const monedaRec = document.getElementById('monedaRec').value;
-    const monedaEnt = document.getElementById('monedaEnt').value;
-
-    if(monedaRec === divisas.moneda) {
-        let cotRecibido = document.getElementById('cotRecibido');
-        cotRecibido.innerHTML = divisas.compra;
-        console.log(divisas.compra)             
-    }
-}*/
-
-//divisasRec();
-/*function divisasRec() {
-    //alert(document.getElementById('monedaEnt').value);
-    console.log(document.getElementById('monedaRec').value);
-}
-function divisasEnt() {
-    //alert(document.getElementById('monedaEnt').value);
-    console.log(document.getElementById('monedaEnt').value);
-}*/
-
-/* ---------------------------------------------------------------------------------- */
-
-/*function recVenta() {
-    //console.log(document.getElementById('recVenta').value);
-    let monedaUno = document.getElementById('recVenta').value;
-    console.log(monedaUno);
-
-
-}*/
-
-/* ---------------------------------------------------------------------------------- */
-
-
-
-
-    
-
-
-/* ---------------------------------------------------------------------------------- */

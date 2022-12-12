@@ -1,19 +1,80 @@
-
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Roboto:wght@300;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
 body {
+    min-height: 100vh;
     background-color: #ddd;
 }
 .container {
-    padding: 0;
+    width: 500px;
+    border-radius: 7px;
+}
+.container header {
+    font-weight: 500;
+    text-align: center;  
+}
+.container form {
+    margin: 20px 0 20px 0;
+}
+
+h3 {
+    font-size: 0.8em;
+}
+form :where(input, select, button) {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+form p {
+    margin-bottom: 5px;
+}
+form input {
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid #999;
 }
 section {
     background-color: #FFF;
     border: 1px solid rgb(128, 126, 126);   
 }
-.flag {
-    font-size: 1.5em;
+.selectBox {
+    border: 1px solid #ddd;
 }
-p {
-    font-size: 1.5em;
+
+.lista .box {
+    height: 45px;
+    width: 115px;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+.box select {
+    width: auto;
+    margin: 0 -5px 0 5px;
+}
+.box .img {
+    max-width: 25px;
+}
+form .cambio {
+    margin: 20px 0 30px;
+}
+form button {
+    height: 52px;
+    color: #fff;
+    background-color: #04aa6d;
+    cursor: pointer;   
+}
+
+.row {
+    border-bottom: 1px solid #ddd;
+}
+
+.flag {
+    font-size: 6em;
 }
 
 #btnIniciar {
@@ -21,7 +82,6 @@ p {
     padding: 16px 0;
     background-color: #E88D0B;
     border: none;
-    font-size: 1.8em;
     color: #FFF;
     text-decoration: none;
     cursor: pointer;
@@ -31,7 +91,6 @@ p {
     padding: 16px 0;
     background-color: #04aa6d;
     border: none;
-    font-size: 1.8em;
     color: #FFF;
     text-decoration: none;
     cursor: pointer;
@@ -52,7 +111,6 @@ p {
     width: 33%;
     padding: 16px 0;
     border: none;
-    font-size: 1.8em;
     text-decoration: none;
     cursor: pointer;
 }
@@ -61,11 +119,11 @@ p {
 }
 
 #confirmCompra, #confirmVenta {
-    width: 20%;
+    width: 30%;
+    margin: 10px 0;
     padding: 16px 0;
     background-color: #04aa6d;
     border: none;
-    font-size: 1.8em;
     color:#FFF;
     text-decoration: none;
     cursor: pointer;
@@ -83,18 +141,8 @@ p {
     height: 100px;
 }
 
-/*.info {
-    display:inline-flex;
-}*/
-
 .form, .formVenta {
     display: none;
-}
-
-.impOne, .cotOne, .arbOne,
-.impTwo, .cotTwo, .arbTwo {
-    text-align: center;
-    /*border: 1px solid #000;*/
 }
 
 label.box {
@@ -107,18 +155,12 @@ input[type=number] {
     padding: 5px 10px 10px 10px;
     margin: 10px 0 10px 0;
 }
-.selectBox {
-    font-size: 1.5em;
-}
-
-
 .titulo h3 {
     border: 1px solid #000;
 
 }
 .reporte {
     margin: 0 auto;
-    border-bottom: 1px solid #000;
     background-color: #04aa6d;
     color: #FFF;
 }
@@ -139,7 +181,3 @@ input[type=number] {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1em;
 }
-/*.arb label {
-    display: flex;
-    justify-content: center;
-}*/
